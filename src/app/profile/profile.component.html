@@ -1,0 +1,84 @@
+<section class="profile-hero card">
+  <div class="profile-details">
+    <div class="avatar" aria-label="Profile avatar">AR</div>
+    <div>
+      <p class="eyebrow">Manager profile</p>
+      <h2>Alex Rivera</h2>
+      <p class="role">Operations lead · Downtown Bistro</p>
+    </div>
+  </div>
+
+  <button type="button" class="primary-button">Edit profile</button>
+</section>
+
+<section class="stats-grid" aria-label="Profile statistics">
+  @for (stat of profileStats; track stat.label) {
+    <article class="stat-card card">
+      <span>{{ stat.label }}</span>
+      <strong>{{ stat.value }}</strong>
+    </article>
+  }
+</section>
+
+<section class="content-grid">
+  <article class="card detail-card">
+    <div class="section-head">
+      <h3>Personal details</h3>
+      <span class="status-pill active">Available</span>
+    </div>
+
+    <dl class="detail-list">
+      <div>
+        <dt>Email</dt>
+        <dd>alex.rivera@downtownbistro.com</dd>
+      </div>
+      <div>
+        <dt>Phone</dt>
+        <dd>+1 (415) 204-8192</dd>
+      </div>
+      <div>
+        <dt>Shift</dt>
+        <dd>Evening manager · Tue-Sat</dd>
+      </div>
+      <div>
+        <dt>Location</dt>
+        <dd>San Francisco, CA</dd>
+      </div>
+    </dl>
+  </article>
+
+  <article class="card goals-card">
+    <div class="section-head">
+      <h3>Team goals</h3>
+      <span class="subtitle">This month</span>
+    </div>
+
+    <ul class="goal-list">
+      @for (goal of teamGoals; track goal) {
+        <li>{{ goal }}</li>
+      }
+    </ul>
+  </article>
+</section>
+
+<section class="card activity-card">
+  <div class="section-head">
+    <h3>Recent activity</h3>
+    <a href="#" aria-label="See all recent activity">See all</a>
+  </div>
+
+  <ul class="activity-log">
+    @for (item of activityLog; track item.title) {
+      <li>
+        <div class="timeline-dot" aria-hidden="true"></div>
+        <div class="activity-copy">
+          <div class="activity-topline">
+            <strong>{{ item.title }}</strong>
+            <span>{{ item.time }}</span>
+          </div>
+          <p>{{ item.detail }}</p>
+        </div>
+      </li>
+    }
+  </ul>
+</section>

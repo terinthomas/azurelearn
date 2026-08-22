@@ -1,0 +1,119 @@
+<section class="hero card">
+  <div class="hero-copy">
+    <p class="eyebrow">Good evening, Alex</p>
+    <h2>Operational overview</h2>
+    <p>
+      Your restaurant is trending above target this week with stronger table turns and
+      satisfied guests across the dining room.
+    </p>
+  </div>
+
+  <div class="hero-badge" aria-label="Service health rating">
+    <span class="status-dot"></span>
+    <div>
+      <strong>95.8%</strong>
+      <small>service health</small>
+    </div>
+  </div>
+</section>
+
+<section class="stats-grid" aria-label="Restaurant summary metrics">
+  @for (card of summaryCards; track card.label) {
+    <article class="stat-card card">
+      <div class="stat-head">
+        <span>{{ card.label }}</span>
+        <span class="trend positive">{{ card.delta }}</span>
+      </div>
+      <strong>{{ card.value }}</strong>
+      <p>{{ card.note }}</p>
+    </article>
+  }
+</section>
+
+<section class="content-grid">
+  <article class="card performance-card">
+    <div class="section-head">
+      <h3>Service performance</h3>
+      <button type="button" class="ghost-button">This week</button>
+    </div>
+
+    <div class="meter-list">
+      @for (metric of serviceMetrics; track metric.label) {
+        <div class="meter-row">
+          <div class="meter-label-row">
+            <span>{{ metric.label }}</span>
+            <strong>{{ metric.value }}</strong>
+          </div>
+          <div class="meter-track" aria-hidden="true">
+            <div class="meter-fill {{ metric.color }}" [style.width.%]="metric.value.replace('%', '')"></div>
+          </div>
+        </div>
+      }
+    </div>
+  </article>
+
+  <article class="card activity-card">
+    <div class="section-head">
+      <h3>Today at a glance</h3>
+      <span class="subtitle">Live</span>
+    </div>
+
+    <ul class="activity-list">
+      <li>
+        <span class="activity-bullet green"></span>
+        <div>
+          <strong>18 tables</strong>
+          <small>currently occupied</small>
+        </div>
+      </li>
+      <li>
+        <span class="activity-bullet amber"></span>
+        <div>
+          <strong>9 reservations</strong>
+          <small>arriving before 7:30 PM</small>
+        </div>
+      </li>
+      <li>
+        <span class="activity-bullet blue"></span>
+        <div>
+          <strong>4 VIP guests</strong>
+          <small>special requests active</small>
+        </div>
+      </li>
+    </ul>
+  </article>
+</section>
+
+<section class="card orders-card">
+  <div class="section-head">
+    <h3>Recent orders</h3>
+    <a href="#" aria-label="View all recent orders">View all</a>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Order</th>
+          <th>Customer</th>
+          <th>Item</th>
+          <th>Total</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of recentOrders; track order.order) {
+          <tr>
+            <td>{{ order.order }}</td>
+            <td>{{ order.customer }}</td>
+            <td>{{ order.item }}</td>
+            <td>{{ order.total }}</td>
+            <td>
+              <span class="status-pill {{ order.status.toLowerCase().replace(' ', '-') }}">{{ order.status }}</span>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</section>
